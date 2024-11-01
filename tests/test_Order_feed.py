@@ -1,23 +1,23 @@
 import allure
-from pages.Main_functional import Main
-from pages.Personal_account_page import Account
-from pages.Order import Order
+from pages.Main_functional_page import MainPage
+from pages.Personal_account_page import AccountPage
+from pages.Order_page import OrderPage
 
 
 class TestOrderFeedFunctionality:
     @allure.title("Если кликнуть на заказ, откроется всплывающее окно с деталями")
     def test_order_details_popup(self, driver):
-        order_page = Order(driver)
-        main = Main(driver)
+        order_page = OrderPage(driver)
+        main = MainPage(driver)
         main.click_order_feed()
         order_page.click_order_in_feed()
         assert order_page.composition_order_display().text == "Cостав"
 
     @allure.title("Заказы пользователя из раздела «История заказов» отображаются на странице «Лента заказов»")
     def test_find_order_in_feed(self, driver):
-        order_page = Order(driver)
-        account_page = Account(driver)
-        main = Main(driver)
+        order_page = OrderPage(driver)
+        account_page = AccountPage(driver)
+        main = MainPage(driver)
         account_page.personal_account()
         account_page.fill_email()
         account_page.fill_password()
@@ -34,9 +34,9 @@ class TestOrderFeedFunctionality:
 
     @allure.title("При создании нового заказа счётчик Выполнено за всё время увеличивается")
     def test_total_orders_count_increment(self, driver):
-        order_page = Order(driver)
-        account_page = Account(driver)
-        main_page = Main(driver)
+        order_page = OrderPage(driver)
+        account_page = AccountPage(driver)
+        main_page = MainPage(driver)
         account_page.personal_account()
         account_page.fill_email()
         account_page.fill_password()
@@ -54,9 +54,9 @@ class TestOrderFeedFunctionality:
 
     @allure.title("При создании нового заказа счётчик Выполнено за сегодня увеличивается")
     def test_today_orders_count_increment(self, driver):
-        order_page = Order(driver)
-        account_page = Account(driver)
-        main_page = Main(driver)
+        order_page = OrderPage(driver)
+        account_page = AccountPage(driver)
+        main_page = MainPage(driver)
         account_page.personal_account()
         account_page.fill_email()
         account_page.fill_password()
@@ -76,9 +76,9 @@ class TestOrderFeedFunctionality:
 
     @allure.title("После оформления заказа его номер появляется в разделе В работе")
     def test_order_number_in_work(self, driver):
-        order_page = Order(driver)
-        account_page = Account(driver)
-        main_page = Main(driver)
+        order_page = OrderPage(driver)
+        account_page = AccountPage(driver)
+        main_page = MainPage(driver)
         account_page.personal_account()
         account_page.fill_email()
         account_page.fill_password()
